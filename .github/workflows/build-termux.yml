@@ -43,12 +43,13 @@ jobs:
         run: chown -R 1000:1000 .
       - name: setup
         run: |
-          /entrypoint.sh pkg install -y ninja python git
+          /entrypoint.sh pkg install -y ninja python git gettext locales
           /entrypoint.sh pip install meson
           /entrypoint.sh pkg install -y tur-repo x11-repo
           /entrypoint.sh pkg install -y clang pkg-config alsa-lib pulseaudio fontconfig freetype gnutls mesa libx11 libxcursor libxfixes libxi libxrandr libxrender libxext vulkan-loader gstreamer gst-plugins-base sdl2 gst-plugins-good xorgproto
           /entrypoint.sh pkg install -y fontconfig freetype krb5 libc++ libgmp libgnutls libxcb libxcomposite libxcursor libxfixes libxrender opengl pulseaudio sdl2 vulkan-loader xorg-xrandr libandroid-shmem libandroid-spawn ffmpeg
           /entrypoint.sh pkg install -y libltdl libsndfile libsoxr speexdsp glib dbus alsa-lib
+          /entrypoint.sh locale-gen zh_CN.UTF-8
       - name: Compressing Termux files
         run: tar cf termuxfs-x86_64.tar /data/data/com.termux/files/usr
       - uses: actions/upload-artifact@v4.6.0
